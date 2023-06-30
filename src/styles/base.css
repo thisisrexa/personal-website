@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Vazirmatn RD VF';
+    src: url('/fonts/Vazirmatn-RD-VF.woff2');
+    font-display: swap;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-700 antialiased min-h-screen leading-normal;
+  }
+
+  h1, h2, h3 {
+    @apply font-bold text-slate-950;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl text-slate-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-8 py-4 rounded-lg flex justify-center items-center text-sm font-medium w-full transition-all ease-in-out duration-200 hover:opacity-80 gap-x-2;
+  }
+}
+
+@layer utilities {
+  .rtl {
+    direction: rtl;
+  }
+
+  .ltr {
+    direction: ltr;
+  }
+}
