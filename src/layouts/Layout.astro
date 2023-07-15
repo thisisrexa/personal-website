@@ -1,33 +1,45 @@
 ---
-import { SEO } from "astro-seo";
-import Header from '@/components/Layouts/Header.astro'
-import Footer from '@/components/Layouts/Footer.astro'
-import '@/styles/base.css'
+import { SEO } from 'astro-seo';
+import Header from '@/components/Layouts/Header.astro';
+import Footer from '@/components/Layouts/Footer.astro';
+import '@/styles/base.css';
 
-const { title, description, openGraph } = Astro.props
+const { title, description, openGraph } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<SEO titleTemplate="%s — توسعه دهنده فرانت-اند" title={title} description={description} openGraph={{
-			basic: {
-				title: openGraph.title,
-				type: openGraph.type,
-				image: openGraph.image
-			}
-		}} />
-	</head>
-	<body>
-		<Header />
-		<main class="w-full py-4 px-6 lg:max-w-3xl lg:mx-auto">
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO
+      titleTemplate="%s — توسعه دهنده فرانت-اند"
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: openGraph.title,
+          type: openGraph.type,
+          image: openGraph.image,
+        },
+      }}
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="w-full px-4 py-4 sm:px-6 lg:mx-auto lg:max-w-3xl">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      if (localStorage.theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </body>
 </html>
