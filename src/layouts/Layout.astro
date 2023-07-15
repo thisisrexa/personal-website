@@ -4,7 +4,7 @@ import Header from '@/components/Layouts/Header.astro';
 import Footer from '@/components/Layouts/Footer.astro';
 import '@/styles/base.css';
 
-const { title, description, openGraph } = Astro.props;
+const { title, description, openGraph, twitter } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -18,13 +18,8 @@ const { title, description, openGraph } = Astro.props;
       titleTemplate="%s — توسعه دهنده فرانت-اند"
       title={title}
       description={description}
-      openGraph={{
-        basic: {
-          title: openGraph.title,
-          type: openGraph.type,
-          image: openGraph.image,
-        },
-      }}
+      openGraph={openGraph}
+      twitter={twitter}
     />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
