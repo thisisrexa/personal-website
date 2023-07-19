@@ -30,12 +30,27 @@ const templates = await databases
 
 <Layout
   title="رکسا"
-  description="This is a test message"
-  openGraph={{ title: 'صفحه فرعی', type: 'Type', image: 'url' }}
+  description="اینجا می تونید به رزومه، نمونه کار ها، قالب ها، پادکست ها،‌ شبکه های اجتماعی و همچنین به آخرین پست های وبلاگ من دسترسی داشته باشید."
+  openGraph={{
+    basic: {
+      title: 'رکسا — توسعه دهنده فرانت-اند',
+      type: 'website',
+      image: '',
+    },
+    optional: {
+            description: 'اینجا می تونید به رزومه، نمونه کار ها، قالب ها، پادکست ها،‌ شبکه های اجتماعی و همچنین به آخرین پست های وبلاگ من دسترسی داشته باشید.'
+
+    }
+  }}
+  twitter={{
+    creator: "@thisisrexa"
+  }}
 >
   <section class="py-8 lg:py-12">
     <h1 class="pb-1">رکسا</h1>
-    <p class="text-gray-500">توسعه دهنده فرانت-اند</p>
+    <p class="text-gray-500 font-medium">
+      توسعه دهنده فرانت-اند
+    </p>
     <div class="pt-6">
       <Biography />
       <div class="flex items-center gap-x-1 text-gray-500">
@@ -227,10 +242,24 @@ const templates = await databases
   <section class="py-8 lg:py-12" id="resumeSection">
     <div class="pb-6 sm:pb-8 lg:pb-10">
       <h2 class="pb-2">رزومه</h2>
-      <p>برای دریافت فایل رزومه من از لینک زیر استفاده کنید.</p>
+      <p>برای مشاهده و دریافت رزومه من از لینک های زیر استفاده کنید.</p>
     </div>
-    <div class="flex flex-col gap-2 lg:flex-row lg:gap-4">
+    <div class="flex flex-col gap-2 lg:gap-4">
       <a
+        href="https://jobvision.ir/cv/84033036-130548"
+        target="_blank"
+        class="btn bg-blue-700 text-gray-50 dark:bg-blue-600"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+</svg>
+        <p class="h-6 leading-6 h-full">
+          مشاهده رزومه فارسی/انگلیسی (نسخه جاب ویژن)
+        </p>
+      </a>
+      <div class="flex flex-col gap-2 lg:gap-4 sm:flex-row">
+        <a
         href="#"
         target="_blank"
         class="btn bg-gray-800 text-gray-50 dark:bg-gray-200 dark:text-gray-950"
@@ -249,7 +278,7 @@ const templates = await databases
             d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
           ></path>
         </svg>
-        <span class="h-6 leading-6">دانلود فایل رزومه نسخه فارسی</span>
+        <p class="h-6 leading-6 h-full">دانلود فایل رزومه نسخه فارسی</p>
       </a>
       <a
         href="#"
@@ -270,8 +299,9 @@ const templates = await databases
             d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
           ></path>
         </svg>
-        <span class="h-6 leading-6">دانلود فایل رزومه نسخه انگلیسی</span>
+        <p class="h-6 leading-6 h-full">دانلود فایل رزومه نسخه انگلیسی</p>
       </a>
+      </div>
     </div>
   </section>
   <section class="py-8 lg:py-12" id="projectSection">
@@ -354,13 +384,13 @@ const templates = await databases
   <div class="pb-6 sm:pb-8 lg:pb-10">
     <h2>پادکست ها</h2>
   </div>
-  <p></p>
+  <p>بزودی...</p>
 </section>
 <section class="py-8 lg:py-12" id="blogSection">
   <div class="pb-6 sm:pb-8 lg:pb-10">
     <h2>بلاگ</h2>
   </div>
-  <p></p>
+  <p>بزودی...</p>
 </section>
 <section class="py-8 lg:py-12" id="socialSection">
   <div class="pb-6 sm:pb-8 lg:pb-10">
@@ -583,7 +613,7 @@ const templates = await databases
       <span
         class="-trnaslate-y-1/2 absolute left-0 right-0 top-[40%] h-px bg-gray-300 dark:bg-gray-700"
       ></span>
-      <p class="z-10 bg-gray-50 pr-4 dark:bg-gray-950">Email</p>
+      <p class="z-10 bg-gray-50 pr-4 dark:bg-gray-950 font-medium">Email</p>
       <a
         href="mailto:thisisrexa@gmail.com"
         target="_blank"
@@ -592,24 +622,11 @@ const templates = await databases
         thisisrexa@gmail.com
       </a>
     </div>
-    <div class="relative flex justify-between">
+        <div class="relative flex justify-between">
       <span
         class="-trnaslate-y-1/2 absolute left-0 right-0 top-[40%] h-px bg-gray-300 dark:bg-gray-700"
       ></span>
-      <p class="z-10 bg-gray-50 pr-4 dark:bg-gray-950">Telegram PV</p>
-      <a
-        href="https://t.me/rexapv"
-        target="_blank"
-        class="link z-10 bg-gray-50 pl-4 dark:bg-gray-950"
-      >
-        @rexapv
-      </a>
-    </div>
-    <div class="relative flex justify-between">
-      <span
-        class="-trnaslate-y-1/2 absolute left-0 right-0 top-[40%] h-px bg-gray-300 dark:bg-gray-700"
-      ></span>
-      <p class="z-10 bg-gray-50 pr-4 dark:bg-gray-950">Instagram DM</p>
+      <p class="z-10 bg-gray-50 pr-4 dark:bg-gray-950 font-medium">Instagram DM</p>
       <a
         href="https://ig.me/thisisrexa"
         target="_blank"
@@ -618,6 +635,21 @@ const templates = await databases
         @thisisrexa
       </a>
     </div>
+    <div class="relative flex justify-between">
+      <span
+        class="-trnaslate-y-1/2 absolute left-0 right-0 top-[40%] h-px bg-gray-300 dark:bg-gray-700"
+      ></span>
+      <p class="z-10 bg-gray-50 pr-4 dark:bg-gray-950 font-medium">Telegram PV</p>
+      <a
+        href="https://t.me/rexapv"
+        target="_blank"
+        class="link z-10 bg-gray-50 pl-4 dark:bg-gray-950"
+      >
+        @rexapv
+      </a>
+    </div>
+
   </div>
 </section>
 </Layout>
+
