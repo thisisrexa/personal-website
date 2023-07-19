@@ -46,7 +46,7 @@
   }
 
   .link {
-    @apply text-blue-600 transition-all duration-200 ease-out;
+    @apply text-blue-600 transition-all duration-200 ease-out dark:text-blue-500;
   }
 
   .arrow {
