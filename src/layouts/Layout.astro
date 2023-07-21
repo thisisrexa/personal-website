@@ -4,7 +4,7 @@ import Header from '@/components/Layouts/Header.astro';
 import Footer from '@/components/Layouts/Footer.astro';
 import '@/styles/base.css';
 
-const { title, description, openGraph, twitter } = Astro.props;
+const { title, description, canonical, openGraph, twitter } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -18,6 +18,7 @@ const { title, description, openGraph, twitter } = Astro.props;
       titleTemplate="%s — توسعه دهنده فرانت-اند"
       title={title}
       description={description}
+      canonical={canonical}
       openGraph={openGraph}
       twitter={twitter}
     />
