@@ -1,31 +1,6 @@
 ---
-import { Client, Databases, Query } from 'appwrite';
 import Layout from '@/layouts/Layout.astro';
 import { Content as Biography } from '@/content/biography.md';
-
-const client = new Client();
-
-client
-  .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject('64a6bc12320815d7767a');
-
-const databases = new Databases(client);
-
-const projects = await databases
-  .listDocuments('64a6bd06620104b31e88', '64a6bd10c9a678361da8', [
-    Query.orderDesc('year'),
-    Query.orderAsc('title'),
-    Query.equal('draft', false),
-  ])
-  .then((res) => res.documents);
-
-const templates = await databases
-  .listDocuments('64a6bd06620104b31e88', '64a6d54febf5f250851f', [
-    Query.orderDesc('pubDate'),
-    Query.orderAsc('title'),
-    Query.equal('draft', false),
-  ])
-  .then((res) => res.documents);
 ---
 
 <Layout
@@ -316,7 +291,7 @@ const templates = await databases
       <h2>پروژه ها</h2>
     </div>
     <div class="space-y-8 pr-2 sm:pr-4">
-      {
+      <!-- {
         projects.map((project) => {
           return (
             <div>
@@ -342,7 +317,7 @@ const templates = await databases
             </div>
           );
         })
-      }
+      } -->
     </div>
   </section>
   <section class="py-8 lg:py-12" id="templateSection">
@@ -350,7 +325,7 @@ const templates = await databases
       <h2>قالب ها</h2>
     </div>
     <div class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 md:gap-x-8">
-      {
+      <!-- {
         templates.map((template) => {
           return (
             <div class="group relative">
@@ -384,7 +359,7 @@ const templates = await databases
             </div>
           );
         })
-      }
+      } -->
     </div>
   </section>
 <section class="py-8 lg:py-12" id="podcastSection">
