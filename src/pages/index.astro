@@ -1,9 +1,30 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import { Content as Biography } from '@/content/biography.md';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.draft !== true;
+});
+
+const allTemplates = await getCollection('templates', ({ data }) => {
+  return data.draft !== true;
+});
+
+allProjects.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() -
+    new Date(a.data.pubDate).valueOf()
+);
+
+allTemplates.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() -
+    new Date(a.data.pubDate).valueOf()
+);
 ---
 
-<Layout
+<BaseLayout
   title="رکسا"
   description="اینجا می تونید به رزومه، نمونه کار ها، قالب ها، پادکست ها،‌ شبکه های اجتماعی و همچنین به آخرین پست های وبلاگ من دسترسی داشته باشید."
   canonical="https://rexadev.ir/"
@@ -34,7 +55,9 @@ import { Content as Biography } from '@/content/biography.md';
       توسعه دهنده فرانت-اند | طراح UI/UX
     </p>
     <div class="pt-6">
-      <Biography />
+      <p class="pb-2">
+        طراح و توسعه دهنده جونیور وب با ۳ سال تجربه، آماده برای همکاری با کارفرمایان جدید برای کسب تجربه، علاقه مند به یادگیری بیشتر در زمینه تکنولوژی های روز دنیا.
+      </p>
       <div class="flex items-center gap-x-1 text-gray-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +283,7 @@ import { Content as Biography } from '@/content/biography.md';
             d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
           ></path>
         </svg>
-        <p class="h-6 leading-6 h-full">دانلود فایل رزومه نسخه فارسی</p>
+        <p class="h-6 leading-6">دانلود فایل رزومه نسخه فارسی</p>
       </a>
       <a
         href="#"
@@ -281,7 +304,7 @@ import { Content as Biography } from '@/content/biography.md';
             d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
           ></path>
         </svg>
-        <p class="h-6 leading-6 h-full">دانلود فایل رزومه نسخه انگلیسی</p>
+        <p class="h-6 leading-6">دانلود فایل رزومه نسخه انگلیسی</p>
       </a>
       </div>
     </div>
@@ -291,19 +314,19 @@ import { Content as Biography } from '@/content/biography.md';
       <h2>پروژه ها</h2>
     </div>
     <div class="space-y-8 pr-2 sm:pr-4">
-      <!-- {
-        projects.map((project) => {
+      {
+        allProjects.map((project) => {
           return (
             <div>
               <div class="flex items-center gap-x-2 pb-4">
-                <h3>{project.title}</h3>
+                <h3>{project.data.title}</h3>
                 <div class="rounded-md bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-gray-800">
-                  <span class="h-3 leading-3">{project.year}</span>
+                  <span class="h-3 leading-3">{project.data.pubDate.getFullYear()}</span>
                 </div>
               </div>
-              {project.summary && <p class="pb-4">{project.summary}</p>}
-              {project.previewUrl ? (
-                <a href={project.previewUrl} target="_blank" class="link arrow">
+              {project.data.summary && <p class="pb-4">{project.data.summary}</p>}
+              {project.data.projectUrl ? (
+                <a href={project.data.projectUrl} target="_blank" class="link arrow">
                   مشاهده پروژه
                 </a>
               ) : (
@@ -317,7 +340,7 @@ import { Content as Biography } from '@/content/biography.md';
             </div>
           );
         })
-      } -->
+      }
     </div>
   </section>
   <section class="py-8 lg:py-12" id="templateSection">
@@ -325,14 +348,14 @@ import { Content as Biography } from '@/content/biography.md';
       <h2>قالب ها</h2>
     </div>
     <div class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 md:gap-x-8">
-      <!-- {
-        templates.map((template) => {
+      {
+        allTemplates.map((templateEntry) => {
           return (
             <div class="group relative">
               <div class="aspect-h-1 aspect-w-1 lg:aspect-none relative w-full overflow-hidden rounded-xl bg-gray-200 group-hover:opacity-90 dark:bg-gray-900 lg:h-72">
-                <img
-                  src={template.thumbnail}
-                  alt={template.title}
+                <Image
+                  src={templateEntry.data.cover}
+                  alt={templateEntry.data.coverAlt}
                   class="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   loading="lazy"
                 />
@@ -340,16 +363,16 @@ import { Content as Biography } from '@/content/biography.md';
               <div class="mt-4 flex w-full justify-between">
                 <h3 class="break-words text-sm font-medium">
                   <a
-                    href={template.previewUrl}
+                    href={templateEntry.data.previewUrl}
                     class="text-inherit hover:no-underline"
                     target="_blank"
                   >
                     <span aria-hidden="true" class="absolute inset-0" />
-                    {template.title}
+                    {templateEntry.data.title}
                   </a>
                 </h3>
                 <a
-                  href={template.previewUrl}
+                  href={templateEntry.data.previewUrl}
                   class="link flex-none text-sm"
                   target="_blank"
                 >
@@ -359,7 +382,7 @@ import { Content as Biography } from '@/content/biography.md';
             </div>
           );
         })
-      } -->
+      }
     </div>
   </section>
 <section class="py-8 lg:py-12" id="podcastSection">
@@ -630,8 +653,7 @@ import { Content as Biography } from '@/content/biography.md';
         @rexapv
       </a>
     </div>
-
   </div>
 </section>
-</Layout>
+</BaseLayout>
 
